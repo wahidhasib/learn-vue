@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Reactive</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>This user's name is {{ name }}</h1>
+        <h1>This user's name is {{ person.name }}</h1>
+        <h1>She is {{ person.age }} years old</h1>
+
+        <h1>Number {{ numbers }}</h1>
+    </div>
+
+
+    <script>
+        const {
+            createApp,
+            ref,
+            onMounted,
+            reactive
+        } = Vue;
+
+        createApp({
+            setup() {
+                const name = ref("Demo");
+                const person = reactive({
+                    name: 'Test',
+                    age: 12,
+                    class: 6
+                });
+
+                const numbers = reactive([2, 4, 10, 15]);
+
+                function updateFunction() {
+                    setTimeout(() => {
+                        name.value = "Hasib";
+                        person.age = 15;
+                        person.name = "Tinni";
+                        numbers[0] = 25;
+                    }, 2000);
+                }
+
+                // Call once when component loads
+                onMounted(() => {
+                    updateFunction();
+                });
+
+                return {
+                    name,
+                    person,
+                    numbers
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>
+
+<!-- Why need to use reactive? -->
+
+<!-- To live update the value and more better simplicity but they cannot work with premetive data types -->
