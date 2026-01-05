@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>V-show</title>
+</head>
+<div id="app">
+    <p>Lucky Numbers</p>
+    <ul>
+        <li v-for="(number, index) in luckyNumbers">{{ index + 1 }} - {{ number }}</li>
+    </ul>
+</div>
+
+<script>
+    const {
+        createApp
+    } = Vue;
+
+    createApp({
+        setup() {
+            const luckyNumbers = [10, 15, 45, 5, 44];
+
+            return {
+                luckyNumbers
+            }
+        }
+    }).mount("#app");
+</script>
+
+<body>
+
+</body>
+
+</html>
