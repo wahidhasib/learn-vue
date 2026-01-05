@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>V-bind</title>
+</head>
+
+<body>
+    <div id="app">
+        <a target="_blank" v-bind:href="url">Go</a>
+    </div>
+
+
+    <script>
+        const {
+            createApp,
+            ref
+        } = Vue;
+
+        createApp({
+            setup() {
+                const url = "https://wahidhasib.com/";
+
+                return {
+                    url
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>
+
+<!-- V-bind used for linkup -->
