@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>V-show</title>
+</head>
+<div id="app">
+    <h1>{{ emplyee.name }} is {{ emplyee.age }} years old. His salary is {{ emplyee.salary }}.
+        <span v-show="emplyee.hasCorporateCard" style="color: red;">His spending limit is {{ emplyee.spendingLimit }}</span>
+    </h1>
+</div>
+
+<script>
+    const {
+        createApp
+    } = Vue;
+
+    createApp({
+        setup() {
+            const emplyee = {
+                name: "Hasib",
+                age: 30,
+                salary: 30000,
+                hasCorporateCard: false,
+                spendingLimit: 10000,
+                yearsWithCompany: 5,
+            }
+
+            return {
+                emplyee
+            }
+        }
+    }).mount("#app");
+</script>
+
+<body>
+
+</body>
+
+</html>
