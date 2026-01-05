@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>V-show</title>
+</head>
+<div id="app">
+    <h1>{{ emplyee.name }} is {{ emplyee.age }} years old. His salary is {{ emplyee.salary }}.
+        <span v-show="emplyee.hasCorporateCard" style="color: red;">His spending limit is {{ emplyee.spendingLimit }}</span>
+    </h1>
+
+
+    <!-- <h1>{{ emplyee.name }} is {{ emplyee.age }} years old. His salary is {{ emplyee.salary }}.
+        <span v-if="emplyee.hasCorporateCard" style="color: red;">His spending limit with if() is {{ emplyee.spendingLimit }}</span>
+        <span v-else="emplyee.hasCorporateCard">emplyee does not have a corporate card</span>
+    </h1> -->
+
+    <!-- <p v-if="emplyee.hasCorporateCard">His spending limit is {{ emplyee.spendingLimit }}</p>
+    <p v-else-if="emplyee.yearsWithCompany >= 3 && emplyee.salary <= 25000">He is eligable for corporate card</p>
+    <p v-else>He has no Corporate card</p> -->
+
+    <p v-if="emplyee.hasCorporateCard">
+        His spending limit is {{ employee.spendingLimit }}
+    </p>
+    <p v-else-if="emplyee.yearsWithCompany >= 3 && emplyee.age > 25">
+        He is eligible for a corporate card
+    </p>
+    <p v-else>
+        He has no corporate card
+    </p>
+</div>
+
+<script>
+    const {
+        createApp
+    } = Vue;
+
+    createApp({
+        setup() {
+            const emplyee = {
+                name: "Hasib",
+                age: 30,
+                salary: 30000,
+                hasCorporateCard: false,
+                spendingLimit: 10000,
+                yearsWithCompany: 5,
+            }
+
+            return {
+                emplyee
+            }
+        }
+    }).mount("#app");
+</script>
+
+<body>
+
+</body>
+
+</html>
+
+<!-- There are big difference between if and show directive -->
+
+<!-- show make it hidden by adding css property display none and the other hand if() directive disble or hide it completely -->
