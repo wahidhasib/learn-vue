@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Ref</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>This user's name is {{ person.name }}</h1>
+        <h1>She is {{ person.age }} years old</h1>
+
+        <h1>Number {{ numbers }}</h1>
+    </div>
+
+
+    <script>
+        const {
+            createApp,
+            ref,
+            onMounted
+        } = Vue;
+
+        createApp({
+            setup() {
+                const name = ref("Demo");
+                const person = ref({
+                    name: 'Test',
+                    age: 12,
+                    class: 6
+                });
+
+                const numbers = ref([2, 4, 10, 15]);
+
+                function updateFunction() {
+                    setTimeout(() => {
+                        name.value = "Hasib";
+                        person.value.age = 15;
+                        person.value.name = "Tinni";
+                        numbers.value[0] = 25;
+                    }, 2000);
+                }
+
+                // Call once when component loads
+                onMounted(() => {
+                    updateFunction();
+                });
+
+                return {
+                    name,
+                    person,
+                    numbers
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>
+
+<!-- Why need to use ref? -->
+
+<!-- To live update the value and re-render the component after the ref value updated -->
