@@ -10,7 +10,8 @@
 <div id="app">
     <p>Lucky Numbers</p>
     <ul>
-        <li v-for="(number, index) in luckyNumbers">{{ index + 1 }} - {{ number }}</li>
+        <!-- <li v-for="(number, index) in luckyNumbers">{{ index + 1 }} - {{ number }}</li> -->
+        <li v-for="(project, index) in person.projects">{{ index + 1 }} - {{ project.name }} completed within {{ project.timeline }}</li>
     </ul>
 </div>
 
@@ -22,9 +23,23 @@
     createApp({
         setup() {
             const luckyNumbers = [10, 15, 45, 5, 44];
+            const person = {
+                name: "hasib",
+                projects: [{
+                    name: "green 1",
+                    timeline: "2years"
+                }, {
+                    name: "green 2",
+                    timeline: "4years"
+                }, {
+                    name: "green 3",
+                    timeline: "6years"
+                }, ]
+            }
 
             return {
-                luckyNumbers
+                luckyNumbers,
+                person
             }
         }
     }).mount("#app");
