@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Class binding</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text" v-on:keyup="pressEnter()"> -->
+        <!-- <input type="text" v-on:keypress="pressEnter()"> -->
+        <!-- <input type="text" v-on:keyup.page-down.enter="pressEnter($event)"> -->
+        <input type="text" v-on:keyup="pressEnter($event)">
+    </div>
+
+    <script>
+        const {
+            createApp,
+            ref
+        } = Vue;
+
+        createApp({
+            setup() {
+                function pressEnter(event) {
+                    alert(event.key + " key was pressed!");
+                }
+
+                return {
+                    pressEnter
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>
