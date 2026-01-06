@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Class binding</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="padding-medium" v-bind:class="{h1:isMainTitle(), 'bg-gray': hasBackground(),}">Test text</div>
+
+        <div :class="{ 'bg-green': isMainTitle ? 'bg-green' : '' }">Hello</div>
+    </div>
+
+    <script>
+        const {
+            createApp,
+            ref
+        } = Vue;
+
+        createApp({
+            setup() {
+                function isMainTitle() {
+                    return true;
+                }
+
+                function hasBackground() {
+                    return true;
+                }
+
+                return {
+                    isMainTitle,
+                    hasBackground,
+                }
+            }
+        }).mount("#app");
+    </script>
+
+    <style>
+        .h1 {
+            font-size: 60px;
+            color: green;
+        }
+        
+        .h2 {
+            font-size: 40px;
+            color: chocolate;
+        }
+        
+        .bg-gray {
+            background-color: gray;
+        }
+        
+        .bg-green {
+            background-color: green;
+        }
+        
+        .padding-medium {
+            padding: 20px;
+        }
+        
+        .border {
+            border: 10px solid tomato;
+        }
+    </style>
+</body>
+
+</html>
