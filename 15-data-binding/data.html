@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Class binding</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="name"> -->
+
+        <!-- trim will remove all empty spaces automatically when focus outside the element -->
+        <input type="text" v-model.trim="name">
+        <!-- <input type="number" v-model="age"> -->
+
+        <!-- lazy will disable the live update of this input value -->
+        <!-- when focus or click outside the element the value will update as well -->
+        <input type="number" v-model.lazy="age">
+
+        <p>{{ name }} is {{ age }} years old.</p>
+        <hr>
+
+    </div>
+
+    <script>
+        const {
+            createApp,
+            ref
+        } = Vue;
+
+        createApp({
+            setup() {
+                const name = ref("Hasib");
+                const age = ref(18);
+
+                return {
+                    name,
+                    age,
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>
