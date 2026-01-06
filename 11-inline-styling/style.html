@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Style with V-style directive</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Simple html -->
+        <div style="background-color: aqua; font-size: 32px;">{{ message }}</div>
+
+        <!-- V bind with snake case -->
+        <div v-bind:style="{backgroundColor: 'aqua', fontSize: '32px'}">{{ message }}</div>
+
+        <!-- V bind with single quote -->
+        <div v-bind:style="{'background-color': 'red', color: 'white', 'font-size': '50px'}">{{ message }}</div>
+
+    </div>
+
+    <script>
+        const {
+            createApp
+        } = Vue;
+
+        createApp({
+            setup() {
+                const message = "hello Vue";
+
+                return {
+                    message,
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>
