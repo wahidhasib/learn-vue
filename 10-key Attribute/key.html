@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>V-show</title>
+</head>
+<div id="app">
+    <p>Lucky Numbers</p>
+    <ul>
+        <!-- <li v-for="(number, index) in luckyNumbers">{{ index + 1 }} - {{ number }}</li> -->
+
+        <!--
+        :key is used by Vue to uniquely identify each item in a v-for list.
+
+        How it works:
+        - Vue uses the key to track which DOM element belongs to which data item
+        - When the list changes (shuffle, add, remove, update),
+        Vue compares keys instead of positions
+
+        Why we need it:
+        - Prevents wrong DOM reuse when items are reordered
+        - Keeps input values, focus, and component state correct
+        - Improves performance and avoids rendering bugs
+
+        Important:
+        - The key must be UNIQUE and STABLE (id is best)
+        - Do NOT use index as key when the list can change order
+        -->
+
+        <li v-for="(project, index) in person.projects" :key="project.name">
+            {{ index + 1 }} - {{ project.name }} completed within {{ project.timeline }} - <input type="text" />
+        </li>
+    </ul>
+
+    <hr>
+</div>
+
+<script>
+    const {
+        createApp,
+        onMounted,
+        reactive
+    } = Vue;
+
+    createApp({
+        setup() {
+            const luckyNumbers = [10, 15, 45, 5, 44];
+            const person = reactive({
+                name: "hasib",
+                projects: [{
+                    name: "green 1",
+                    timeline: "2years",
+                }, {
+                    name: "green 2",
+                    timeline: "4years",
+                }, {
+                    name: "green 3",
+                    timeline: "6years",
+                }, ],
+            });
+
+            function shuffleProject() {
+                setTimeout(() => {
+                    person.projects.sort(() => Math.random() - 0.5);
+                }, 6000);
+            }
+
+            onMounted(() => {
+                shuffleProject();
+            });
+
+            return {
+                luckyNumbers,
+                person,
+                shuffleProject,
+            };
+        },
+    }).mount("#app");
+</script>
+
+<body></body>
+
+</html>
+
+<!-- T -->
