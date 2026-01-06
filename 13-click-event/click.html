@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Class binding</title>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="buttonClick('hasib', 'Clicked the button')">Click Me</button>
+        <button v-on:click.once="buttonClick('hasib', 'Clicked the button', $event)">Click Me</button>
+    </div>
+
+    <script>
+        const {
+            createApp,
+            ref
+        } = Vue;
+
+        createApp({
+            setup() {
+                function buttonClick(name, message, event = null) {
+                    console.log(event);
+                    alert(`${name} ${message}`);
+                }
+
+                return {
+                    buttonClick,
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>
+
+<!-- v-click handle the click event & .once is managed duplecancy -->
