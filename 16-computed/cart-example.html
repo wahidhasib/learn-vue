@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model="unitPrice" type="number">
+        <h4>Product quantity: {{ productQuantity }}</h4>
+        <h4>Unit price: {{ unitPrice }}</h4>
+
+        <hr>
+        <button @click="productQuantity++">Increment</button>
+        <button @click="productQuantity > 1 && productQuantity--">Decrement</button>
+
+        <h1>Total Price: {{ totalPrice }}</h1>
+    </div>
+
+    <script>
+        const {
+            createApp,
+            ref,
+            computed
+        } = Vue;
+
+        createApp({
+            setup() {
+                const unitPrice = ref(400);
+                const productQuantity = ref(1);
+
+                const totalPrice = computed(() => {
+                    return unitPrice.value * productQuantity.value;
+                });
+
+                return {
+                    unitPrice,
+                    productQuantity,
+                    totalPrice,
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

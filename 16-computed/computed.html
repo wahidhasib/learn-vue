@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Computed</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Counter: {{ counter }}</h1>
+        <h2>Double: {{ doubleCounter }}</h2>
+        <h2>Cube: {{ cubeCounter }}</h2>
+
+        <button @click="counter++">Increment</button>
+    </div>
+
+    <script>
+        const {
+            createApp,
+            ref,
+            computed
+        } = Vue;
+
+        createApp({
+            setup() {
+                const counter = ref(2);
+
+                const doubleCounter = computed(() => {
+                    console.log("Double counter run");
+                    return counter.value * 2;
+                });
+
+                const cubeCounter = computed(() => {
+                    return doubleCounter.value * 2;
+                });
+
+                return {
+                    counter,
+                    doubleCounter,
+                    cubeCounter,
+                }
+            }
+        }).mount("#app");
+    </script>
+
+</body>
+
+</html>
