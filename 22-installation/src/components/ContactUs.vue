@@ -1,12 +1,22 @@
 <template>
     <div>
         <h1>Contact Us</h1>
-        <p>{{ email }}</p>
+        <p>{{ person.name }}</p>
+        <h5>{{ email }}</h5>
     </div>
 </template>
 
 <script setup>
-    import { ref } from 'vue';
-
-    const email = ref("hello@examplec.com");
+    // import { defineProps } from 'vue';
+    
+    const props = defineProps({
+        email: {
+            type: String,
+            required: true,
+        },
+        person: {
+            type: Object,
+            required: true
+        }
+    });
 </script>

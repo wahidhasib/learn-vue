@@ -17,6 +17,6 @@ import ContactUs from './components/ContactUs.vue';
     <h3>Hi</h3>
     <button-counter/>
 
-    <ContactUs/>
+    <ContactUs :person="person" email="test@gmail.com"/>
   </div>
 </template>
