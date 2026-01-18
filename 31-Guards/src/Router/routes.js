@@ -71,6 +71,7 @@ const router = createRouter({
             component: NotFound,
         }
     ],
+    linkActiveClass: "active bg-dark text-white",
 });
 
 
